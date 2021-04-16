@@ -42,13 +42,13 @@ function debug() {
 }
 
 debug "writeGroupId : $writeGroupId, readGroupId : $readGroupId, writeNodeCanRead : $writeNodeCanRead, errFile : $errFile"
-proxysql_cmd="mysql -u$proxysql_user -p$proxysql_password -h$proxysql_host -P$proxysql_port -Nse"
+proxysql_cmd="/usr/local/mysql/bin/mysql -u$proxysql_user -p$proxysql_password -h$proxysql_host -P$proxysql_port -Nse"
 debug "proxysql_cmd : $proxysql_cmd"
 mysql_credentials=$($proxysql_cmd "SELECT variable_value FROM global_variables WHERE variable_name IN ('mysql-monitor_username','mysql-monitor_password') ORDER BY variable_name DESC")
 mysql_user=$(echo $mysql_credentials | awk '{print $1}')
 mysql_password=$(echo $mysql_credentials | awk '{print $2}')
 debug "mysql_user : $mysql_user, mysql_password : $mysql_password"
-mysql_cmd="mysql -u$mysql_user -p$mysql_password"
+mysql_cmd="/usr/local/mysql/bin/mysql -u$mysql_user -p$mysql_password"
 debug "mysql_cmd : $mysql_cmd"
 
 update_servers_cmd_opts="LOAD MYSQL SERVERS TO RUNTIME; SAVE MYSQL SERVERS TO DISK;"
