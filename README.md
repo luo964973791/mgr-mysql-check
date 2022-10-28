@@ -55,15 +55,6 @@ load mysql query rules to runtime;
 save mysql query rules to disk;
 ```
 
-
-### 五、在proxysql服务器上执行，设置读写分离
-```javascript
-INSERT INTO mysql_query_rules (rule_id,active,match_digest,destination_hostgroup,apply) VALUES (1,1,'^SELECT.*FOR UPDATE$',10,1),(2,1,'^SELECT',30,1);
-load mysql query rules to runtime;
-save mysql query rules to disk;
-```
-
-
 ### 六、直接在服务器上登录,注意端口号是6033
 ```javascript
 mysql -uproxysql -p'Proxysql&@2022' -h 127.0.0.1 -P6033
