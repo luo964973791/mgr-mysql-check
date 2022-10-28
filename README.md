@@ -53,6 +53,7 @@ select hostname,port,viable_candidate,read_only,transactions_behind,error from m
 INSERT INTO mysql_query_rules (rule_id,active,match_digest,destination_hostgroup,apply) VALUES (1,1,'^SELECT.*FOR UPDATE$',10,1),(2,1,'^SELECT',30,1);
 load mysql query rules to runtime;
 save mysql query rules to disk;
+select hostgroup,digest_text from stats_mysql_query_digest order by digest_text desc limit 10;   #查询增删改查都在哪些主从节点执行的.
 ```
 
 ### 六、直接在服务器上登录,注意端口号是6033
